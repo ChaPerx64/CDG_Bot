@@ -7,4 +7,4 @@ docker run \
 --mount source=cdg_bot_volume,target=/custom_messages \
 --rm \
 chapardev/cdg_bot
-docker image prune
+docker image prune -f

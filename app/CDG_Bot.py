@@ -1,6 +1,7 @@
 import datetime
 import logging
 import os
+import time
 
 from dotenv import load_dotenv
 from telegram import (
@@ -170,4 +171,5 @@ def main():
 
 if __name__ == "__main__":
     print("Chaian's Digital Ghost (CDG) greets you!")
+    time.sleep(5)
     main()
