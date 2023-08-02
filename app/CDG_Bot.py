@@ -22,7 +22,7 @@ from TMPers import rf_text, wf_text
 ADMIN_LIST_PATH = 'admin_ids.json'
 REMINDER_TIME = datetime.time(hour=5, minute=0)
 INIT_MSG = 'CDG is up and running!'
-
+MSG_PATH = 'custom_messages/youth_prayer_reminder.txt'
 
 # Class for storing the authentication information
 class Authenticator:
@@ -59,7 +59,7 @@ async def set_msg_start(update, context):
     if user.id in curr_auth.get_admins():  # Owner's telegram profile id
         await update.message.reply_text('Текущий текст напоминалки:')
         await update.message.reply_text(
-            rf_text('youth_prayer_reminder.txt'),
+            rf_text(MSG_PATH),
             disable_web_page_preview=True
         )
         await update.message.reply_text(
@@ -111,7 +111,7 @@ async def choose_action(update: Update, context: CallbackContext):
     match input_1:
         case "сохранить":
             await update.message.reply_text('Cохранено!')
-            wf_text('youth_prayer_reminder.txt', context.user_data.get("NEW_TEXT"))
+            wf_text(MSG_PATH, context.user_data.get("NEW_TEXT"))
             return ConversationHandler.END
         case "повторить":
             await update.message.reply_text(text='Хорошо, введи сообщение заново')
@@ -132,7 +132,7 @@ async def send_test_message(update, context):
 async def send_reminder(context: CallbackContext):
     await context.bot.send_message(
         chat_id=curr_auth.youth,
-        text=rf_text('youth_prayer_reminder.txt')
+        text=rf_text(MSG_PATH)
     )
 
 
