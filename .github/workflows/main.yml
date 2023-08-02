@@ -30,3 +30,4 @@ jobs:
             --mount source=cdg_bot_volume,target=/custom_messages \
             --rm -d \
             chapardev/cdg_bot
+          docker image prune

@@ -22,7 +22,7 @@ from TMPers import rf_text, wf_text
 ADMIN_LIST_PATH = 'admin_ids.json'
 REMINDER_TIME = datetime.time(hour=5, minute=0)
 INIT_MSG = 'CDG is up and running!'
-MSG_PATH = 'custom_messages/youth_prayer_reminder.txt'
+MSG_PATH = '/custom_messages/youth_prayer_reminder.txt'
 
 # Class for storing the authentication information
 class Authenticator:
@@ -160,6 +160,7 @@ def main():
             },
             fallbacks=[],
             conversation_timeout=180,
+            allow_reentry=True,
         )
     )
     app.job_queue.run_daily(send_reminder, REMINDER_TIME)
