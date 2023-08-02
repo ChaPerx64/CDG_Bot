@@ -42,5 +42,4 @@ jobs:
         script_stop: true
         script: |
           docker stop cdg_bot_container
-          docker rm cdg_bot_container
           docker run --name cdg_bot_container --env-file './bots/cdg_bot/.env.prod' --pull always --rm -d chapardev/cdg_bot
