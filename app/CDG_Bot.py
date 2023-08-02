@@ -158,7 +158,8 @@ def main():
                 'CHOOSE_ACTION': [MessageHandler(filters.TEXT, choose_action)],
                 'MESSAGE_SHOWN': [MessageHandler(filters.TEXT, msg_shown)]
             },
-            fallbacks=[]
+            fallbacks=[],
+            conversation_timeout=180,
         )
     )
     app.job_queue.run_daily(send_reminder, REMINDER_TIME)
