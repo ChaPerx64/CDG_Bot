@@ -41,6 +41,4 @@ jobs:
         port: 22
         script_stop: true
         script: |
-          docker pull chapardev/cdg_bot:latest
           docker run --name cdg_bot_container --env-file './bots/cdg_bot/.env.prod' --rm -d chapardev/cdg_bot
-
