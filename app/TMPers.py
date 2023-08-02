@@ -8,7 +8,7 @@ def rf_text(f_name: str):
         with open(join(dirname(__file__), 'custom_messages', f_name), encoding='utf-8') as t:
             return t.read()
     except FileNotFoundError:
-        return ''
+        return 'default'
 
 
 def wf_text(f_name: str, text: str):
