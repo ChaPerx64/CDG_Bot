@@ -2,4 +2,4 @@
 custom_messages
 __pycache__
 venv
-.env
+.env*
