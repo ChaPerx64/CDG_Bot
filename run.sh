@@ -1,11 +1,12 @@
 #!/bin/bash
-SRVR="root@188.225.86.226"
-EXECUTABLE="CDG_Bot.py"
-TARDIR="/root/bots/cdg_bot_v0"
-ssh $SRVR << EOF
-pkill -f "$EXECUTABLE"
-cd "$TARDIR"
-python3 -m venv venv
-source venv/bin/activate
-nohup python3 "$EXECUTABLE" >/dev/null 2>&1 &
-EOF
+docker stop cdg_bot_container || true && docker rm cdg_bot_container || true
+docker build \
+--ssh default=./.ssh/id_rsa \
+-t chapardev/cdg_bot \
+git@github.com:ChaPerx64/CDG_Bot.git
+docker run \
+--name cdg_bot_container \
+--env-file './bots/cdg_bot/.env.prod' \
+--mount source=cdg_bot_volume,target=/custom_messages \
+--rm -d \
+chapardev/cdg_bot
