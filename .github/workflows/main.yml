@@ -29,3 +29,18 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/cdg_bot:latest
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy using ssh
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.PRIVATE_KEY }}
+        port: 22
+        script_stop: true
+        script: |
+          docker pull chapardev/cdg_bot:latest
+          docker run --name cdg_bot_container --env-file './bots/cdg_bot/.env.prod' --rm -d chapardev/cdg_bot
+
