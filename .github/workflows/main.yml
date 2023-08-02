@@ -28,6 +28,7 @@ jobs:
             --name cdg_bot_container \
             --env-file './bots/cdg_bot/.env.prod' \
             --mount source=cdg_bot_volume,target=/custom_messages \
+            --restart unless-stopped \
             --rm -d \
             chapardev/cdg_bot
           docker image prune -f
